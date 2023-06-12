@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import QRCode from 'qrcode.react';
 import Form from './Form';
-import { Button } from '@mui/material';
 import Watermark from './Watermark';
-
 const Aadhar = () => {
-    const [data, setData] = useState({ name: '', watermark:true, aadharNumber: '', address: '', hindiName: '', gender: 'Male' })
+    const [data, setData] = useState({ name: '', watermark: true, aadharNumber: '', address: '', hindiName: '', gender: 'Male' })
     const text = `Name
 ${data.name}
 Address
@@ -21,7 +19,6 @@ ${data.gender}
 Father
 ${data.father}
 `;
-
     return (
         <>
             <Form data={data} setData={setData} />
