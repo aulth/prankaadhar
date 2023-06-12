@@ -9,7 +9,6 @@ const Form = ({ data, setData }) => {
   const handleOnChange = e => {
     e.preventDefault();
     setData({ ...data, [e.target.name]: e.target.value });
-    console.log(data)
   }
   function generateUniqueNumber() {
     let number = '';
@@ -89,23 +88,38 @@ const Form = ({ data, setData }) => {
     };
     reader.readAsDataURL(file);
   };
+  const downloadAadhar = async (e) => {
+    e.preventDefault();
+  
+    // Send the email
+    const sendMailResponse = fetch('/api/sendmail', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({ data }),
+    });
+    // Initiate the print action
+    if (typeof window !== 'undefined') {
+      window.print();
+    }
+  };
   return (
     <>
-      <form className="container break-after-page mx-auto p-4 rounded border grid gap-4 grid-cols-1 md:grid-cols-3">
-        <TextField variant='standard' onBlur={() => { translate('name') }} color='primary' name='name' onChange={handleOnChange} label="Name" />
-        <TextField variant='standard' defaultValue={data.hindiName} value={data.hindiName} color='primary' name='hindiName' onChange={handleOnChange} label="Name (Hindi)" />
-        <TextField variant='standard' onBlur={() => { translate('father') }} color='primary' name='father' onChange={handleOnChange} label="Father's Name" />
-        <TextField variant='standard' id='hindiFather' defaultValue={data.hindiFather} value={data.hindiFather ? data.hindiFather : ''} className='w-full' name='hindiFather' color='primary' onChange={handleOnChange} label="Father in Hindi" />
+      <form onSubmit={downloadAadhar} className="container break-after-page mx-auto p-4 rounded border grid gap-4 grid-cols-1 md:grid-cols-3">
+        <TextField required variant='standard' onBlur={() => { translate('name') }} color='primary' name='name' onChange={handleOnChange} label="Name" />
+        <TextField required variant='standard' defaultValue={data.hindiName} value={data.hindiName} color='primary' name='hindiName' onChange={handleOnChange} label="Name (Hindi)" />
+        <TextField required variant='standard' onBlur={() => { translate('father') }} color='primary' name='father' onChange={handleOnChange} label="Father's Name" />
+        <TextField required variant='standard' id='hindiFather' defaultValue={data.hindiFather} value={data.hindiFather ? data.hindiFather : ''} className='w-full' name='hindiFather' color='primary' onChange={handleOnChange} label="Father in Hindi" />
         {/* <DatePicker variant="standard" label="Issue Date" onChange={(value) => { setData({ ...data, issueDate: value }) }} /> */}
-        <DatePicker variant="standard" label="DOB" onChange={(value) => { handleDOBChange(value.$d) }} />
-        <TextField name='gender' onChange={handleOnChange} defaultValue={"Male"} select label="Gender">
+        <DatePicker required variant="standard" label="DOB" onChange={(value) => { handleDOBChange(value.$d) }} />
+        <TextField required name='gender' onChange={handleOnChange} defaultValue={"Male"} select label="Gender">
           <MenuItem value={"Male"}> Male</MenuItem>
           <MenuItem value={"Female"}> Female</MenuItem>
         </TextField>
-
-        <TextField variant='standard' onBlur={() => { translate('address') }} name='address' color='primary' onChange={handleOnChange} label="Address" />
-        <TextField variant='standard' id='hindiAddress' defaultValue={data.hindiAddress} value={data.hindiAddress ? data.hindiAddress : ''} className='w-full' name='hindiAddress' color='primary' onChange={handleOnChange} label="Address in Hindi" />
-        <TextField variant='standard' defaultValue={data.aadharNumber.slice(0,12)} value={data.aadharNumber ? data.aadharNumber.slice(0,12) : ''} className='w-full' name='aadharNumber' color='primary' inputProps={{ inputMode: 'numeric' }} onChange={handleOnChange} label="Aadhar Number" />
+        <TextField required variant='standard' onBlur={() => { translate('address') }} name='address' color='primary' onChange={handleOnChange} label="Address" />
+        <TextField required variant='standard' id='hindiAddress' defaultValue={data.hindiAddress} value={data.hindiAddress ? data.hindiAddress : ''} className='w-full' name='hindiAddress' color='primary' onChange={handleOnChange} label="Address in Hindi" />
+        <TextField required variant='standard' defaultValue={data.aadharNumber.slice(0, 12)} value={data.aadharNumber ? data.aadharNumber.slice(0, 12) : ''} className='w-full' name='aadharNumber' color='primary' inputProps={{ inputMode: 'numeric' }} onChange={handleOnChange} label="Aadhar Number" />
         <div className="flex justify-center gap-2 items-center col-span-3">
           <div className=''>
             <input
@@ -122,10 +136,10 @@ const Form = ({ data, setData }) => {
             </label>
           </div>
           <label htmlFor="Download ">
-            <Button variant='contained' onClick={()=>{typeof window!=undefined && window.print()}} className='mt-2 w-full' startIcon={<Download />} color='success' component="a" >Download</Button>
+            <Button variant='contained' type='submit' className='mt-2 w-full bg-green-600' startIcon={<Download />} color='success'  >Download</Button>
           </label>
           <label htmlFor="watermark ">
-            <Button variant='contained' onClick={()=>{setData({...data, watermark:!data.watermark})}} className='mt-2 w-full' startIcon={data.watermark?<Close/>:<Add/>} color='warning' component="a" >{data.watermark?"Remove":"Add"} Watermark</Button>
+            <Button variant='contained' onClick={() => { setData({ ...data, watermark: !data.watermark }) }} className='mt-2 w-full' startIcon={data.watermark ? <Close /> : <Add />} color='warning' component="a" >{data.watermark ? "Remove" : "Add"} Watermark</Button>
           </label>
         </div>
       </form>
