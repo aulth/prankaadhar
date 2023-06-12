@@ -1,9 +1,9 @@
-import { MenuItem, TextField } from '@mui/material'
+import { Fab, MenuItem, TextField } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers'
 import React, { useState, useEffect } from 'react'
 import { IconButton } from '@mui/material';
 import { Button } from '@mui/material';
-import { CloudUploadOutlined } from '@mui/icons-material';
+import { Add, BrandingWatermark, BrandingWatermarkTwoTone, Close, CloudUploadOutlined, DownloadOutlined, Payment, RemoveCircle, RemoveDone, SpatialTracking } from '@mui/icons-material';
 import { Download } from '@mui/icons-material';
 const Form = ({ data, setData }) => {
   const handleOnChange = e => {
@@ -93,6 +93,7 @@ const Form = ({ data, setData }) => {
     <>
       <form className="container break-after-page mx-auto p-4 rounded border grid gap-4 grid-cols-1 md:grid-cols-3">
         <TextField variant='standard' onBlur={() => { translate('name') }} color='primary' name='name' onChange={handleOnChange} label="Name" />
+        <TextField variant='standard' defaultValue={data.hindiName} value={data.hindiName} color='primary' name='hindiName' onChange={handleOnChange} label="Name (Hindi)" />
         <TextField variant='standard' onBlur={() => { translate('father') }} color='primary' name='father' onChange={handleOnChange} label="Father's Name" />
         <TextField variant='standard' id='hindiFather' defaultValue={data.hindiFather} value={data.hindiFather ? data.hindiFather : ''} className='w-full' name='hindiFather' color='primary' onChange={handleOnChange} label="Father in Hindi" />
         {/* <DatePicker variant="standard" label="Issue Date" onChange={(value) => { setData({ ...data, issueDate: value }) }} /> */}
@@ -101,25 +102,32 @@ const Form = ({ data, setData }) => {
           <MenuItem value={"Male"}> Male</MenuItem>
           <MenuItem value={"Female"}> Female</MenuItem>
         </TextField>
-        <div className='mt-2'>
-          <input
-            accept="image/*"
-            style={{ display: 'none' }}
-            id="image-upload-input"
-            type="file"
-            onChange={handleFileChange}
-          />
-          <label htmlFor="image-upload-input">
-            <Button variant="contained" className='w-full mt-2' color="primary" component="span" startIcon={<CloudUploadOutlined />}>
-              Upload Image
-            </Button>
-          </label>
-        </div>
+
         <TextField variant='standard' onBlur={() => { translate('address') }} name='address' color='primary' onChange={handleOnChange} label="Address" />
         <TextField variant='standard' id='hindiAddress' defaultValue={data.hindiAddress} value={data.hindiAddress ? data.hindiAddress : ''} className='w-full' name='hindiAddress' color='primary' onChange={handleOnChange} label="Address in Hindi" />
-        <label htmlFor="disclaimer">
-          <Button variant='contained' href='/disclaimer' className='mt-2 w-full' color='secondary' component="a" >Disclaimer</Button>
-        </label>
+        <TextField variant='standard' defaultValue={data.aadharNumber.slice(0,12)} value={data.aadharNumber ? data.aadharNumber.slice(0,12) : ''} className='w-full' name='aadharNumber' color='primary' inputProps={{ inputMode: 'numeric' }} onChange={handleOnChange} label="Aadhar Number" />
+        <div className="flex justify-center gap-2 items-center col-span-3">
+          <div className=''>
+            <input
+              accept="image/*"
+              style={{ display: 'none' }}
+              id="image-upload-input"
+              type="file"
+              onChange={handleFileChange}
+            />
+            <label htmlFor="image-upload-input">
+              <Button variant="contained" className='w-full mt-2' color="primary" component="span" startIcon={<CloudUploadOutlined />}>
+                Upload Image
+              </Button>
+            </label>
+          </div>
+          <label htmlFor="Download ">
+            <Button variant='contained' onClick={()=>{typeof window!=undefined && window.print()}} className='mt-2 w-full' startIcon={<Download />} color='success' component="a" >Download</Button>
+          </label>
+          <label htmlFor="watermark ">
+            <Button variant='contained' onClick={()=>{setData({...data, watermark:!data.watermark})}} className='mt-2 w-full' startIcon={data.watermark?<Close/>:<Add/>} color='warning' component="a" >{data.watermark?"Remove":"Add"} Watermark</Button>
+          </label>
+        </div>
       </form>
     </>
   )
