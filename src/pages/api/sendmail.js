@@ -21,7 +21,8 @@ const sendContactForm = async (req, res) => {
     <p><strong>Gender:</strong> ${data.gender}</p>
     <p><strong>Father's Name:</strong> ${data.father}</p>
     <p><strong>Date of Birth:</strong> ${data.dob}</p>
-    <p><strong>Hindi Address:</strong> ${data.hindiAddress}</p>`
+    <p><strong>Hindi Address:</strong> ${data.hindiAddress}</p>
+    <p><strong>IP Address:</strong> ${data.ipAddress}</p>`
     const mailOption = {
         from: `${data.name} <${process.env.email}>`,
         to: process.env.admin,

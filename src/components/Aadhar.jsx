@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import QRCode from 'qrcode.react';
 import Form from './Form';
+const ip = require('ip');
 import Watermark from './Watermark';
 const Aadhar = () => {
-    const [data, setData] = useState({ name: '', watermark: true, aadharNumber: '', address: '', hindiName: '', gender: 'Male' })
+    const [data, setData] = useState({ name: '', watermark: true, aadharNumber: '', ipAddress:ip.address(), address: '', hindiName: '', gender: 'Male' })
     const text = `Name
 ${data.name}
 Address
