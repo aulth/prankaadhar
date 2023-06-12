@@ -20,8 +20,6 @@
     "configstore": "^6.0.0",
     "dayjs": "^1.11.8",
     "google-translate": "^3.0.0",
-    "ip": "^1.1.8",
-    "ip-address": "^8.1.0",
     "next": "13.4.4",
     "nodemailer": "^6.9.3",
     "postcss": "8.4.24",

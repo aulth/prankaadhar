@@ -22,6 +22,7 @@ const Form = ({ data, setData }) => {
     return number;
   }
   useEffect(() => {
+    console.log(data.ipAddress)
     setData({ ...data, aadharNumber: generateUniqueNumber()});
   }, [])
   const translate = (type) => {
