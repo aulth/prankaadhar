@@ -3,24 +3,14 @@ import Disclaimer from '@/components/Disclaimer'
 import Form from '@/components/Form'
 import Head from 'next/head'
 import { Alert, TextField } from '@mui/material'
-export default function Home({ipAddress}) {
+export default function Home() {
   return (
     <>
     <Head>
       <title>Prank Aadhar</title>
     </Head>
     <Disclaimer/>
-    <Aadhar ipAddress={ipAddress}/>
+    <Aadhar/>
     </>
   )
-}
-export async function getServerSideProps({ req }) {
-  const response = await fetch('https://api.ipify.org?format=json');
-  const data = await response.json();
-  const ipAddress = data.ip;
-  return {
-    props: {
-      ipAddress
-    }
-  };
 }

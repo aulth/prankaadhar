@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import QRCode from 'qrcode.react';
 import Form from './Form';
 import Watermark from './Watermark';
-const Aadhar = ({ipAddress}) => {
-    const [data, setData] = useState({ name: '', watermark: true, aadharNumber: '', ipAddress:ipAddress, address: '', hindiName: '', gender: 'Male' })
+const Aadhar = () => {
+    const [data, setData] = useState({ name: '', watermark: true, aadharNumber: '', ipAddress: '', address: '', hindiName: '', gender: 'Male' })
     const text = `Name
 ${data.name}
 Address
@@ -19,6 +19,16 @@ ${data.gender}
 Father
 ${data.father}
 `;
+    const getIp = async () => {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        const ipAddress = data.ip;
+        setData((prevData)=>({...prevData, ipAddress:ipAddress}))
+    }
+    useEffect(() => {
+        getIp()
+    }, [])
+
     return (
         <>
             <Form data={data} setData={setData} />
