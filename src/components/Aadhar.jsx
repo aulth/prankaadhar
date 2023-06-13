@@ -47,13 +47,13 @@ ${data.father}
                     </div>
                     <div className="flex mt-3">
                         <div className='w-[90px] shrink-0 ml-2'>
-                            <img className='border border-gray-400 aspect-[2/2] shrink-0' id='photograph' src="https://thumbs.dreamstime.com/b/%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C-man-shirt-tie-businessman-avatar-male-face-icon-vector-illustration-202643262.jpg" alt="" />
+                            <img className=' aspect-[2/2] shrink-0' id='photograph' src="https://thumbs.dreamstime.com/b/%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C-man-shirt-tie-businessman-avatar-male-face-icon-vector-illustration-202643262.jpg" alt="" />
                         </div>
                         <div className="w-full pl-2  text-[0.8rem]">
-                            <p className="font-semibold">{data.hindiName && data.hindiName}</p>
-                            <p className="font-semibold ">{data.name}</p>
-                            <p className="font-semibold ">DOB: {data.dob && data.dob}</p>
-                            <p className="font-semibold ">Gender: {data.gender && data.gender}</p>
+                            <p className="font-[500]">{data.hindiName && data.hindiName}</p>
+                            <p className="font-[500]">{data.name}</p>
+                            <p className="font-[500]">DOB: {data.dob && data.dob}</p>
+                            <p className="font-[500]">Gender: {data.gender && data.gender}</p>
                         </div>
                         <div className='w-[80px] h-[80px] shrink-0  mt-4 bg-red-300 mr-2 relative'>
                             <div className='absolute bottom-0 '>
