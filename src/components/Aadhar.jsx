@@ -50,10 +50,10 @@ ${data.father}
                             <img className=' aspect-[2/2] shrink-0' id='photograph' src="https://thumbs.dreamstime.com/b/%D0%BF%D0%B5%D1%87%D0%B0%D1%82%D1%8C-man-shirt-tie-businessman-avatar-male-face-icon-vector-illustration-202643262.jpg" alt="" />
                         </div>
                         <div className="w-full pl-2  text-[0.8rem]">
-                            <p className="font-[500]">{data.hindiName && data.hindiName}</p>
-                            <p className="font-[500]">{data.name}</p>
-                            <p className="font-[500]">DOB: {data.dob && data.dob}</p>
-                            <p className="font-[500]">Gender: {data.gender && data.gender}</p>
+                            <p className="">{data.hindiName && data.hindiName}</p>
+                            <p className="">{data.name}</p>
+                            <p className="">DOB: {data.dob && data.dob}</p>
+                            <p className="">Gender: {data.gender && data.gender}</p>
                         </div>
                         <div className='w-[80px] h-[80px] shrink-0  mt-4 bg-red-300 mr-2 relative'>
                             <div className='absolute bottom-0 '>
@@ -93,13 +93,13 @@ ${data.father}
                     <div className="grid grid-cols-2 mt-3 gap-4 mb-6">
                         <div>
                             <p className="font-semibold text-center">पता:</p>
-                            <p className="text-left text-sm leading-tight font-[500]">
+                            <p className="text-left text-sm leading-tight">
                                 {data.gender && data.gender == "Male" ? 'S/o ' : 'D/o '}{data.hindiFather}  {data.hindiAddress && data.hindiAddress}
                             </p>
                         </div>
                         <div>
                             <p className="font-semibold text-center">Address:</p>
-                            <p className="text-left text-sm leading-tight font-[400]">{data.gender && data.gender == "Male" ? 'S/o ' : 'D/o '}{data.father} {data.address && data.address}</p>
+                            <p className="text-left text-sm leading-tight">{data.gender && data.gender == "Male" ? 'S/o ' : 'D/o '}{data.father} {data.address && data.address}</p>
                         </div>
                     </div>
                     <div className="absolute bottom-2 w-full left-0">
